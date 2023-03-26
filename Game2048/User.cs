@@ -49,7 +49,7 @@ namespace Game2048
             this.password = null;
             this.storedFileName = storedFileName;
             if (storedFileName != null)
-                this.storedFileName = "../../Data/" + storedFileName + ".txt";
+                this.storedFileName = "./" + storedFileName + ".txt";
         }
         public User(string accountName, string password)
         {

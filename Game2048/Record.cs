@@ -31,7 +31,7 @@ namespace Game2048
             this.accountName = null;
             recordDay = DateTime.Now;
             if (storedFileName != null)
-                this.storedFileName = "../../Data/" + storedFileName + ".txt";
+                this.storedFileName = "./" + storedFileName + ".txt";
         }
         public Record(string accountName, int score, DateTime recordDay)
         {
