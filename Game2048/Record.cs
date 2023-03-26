@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Collections;
+using System.Resources;
 
 namespace Game2048
 {
@@ -31,7 +32,16 @@ namespace Game2048
             this.accountName = null;
             recordDay = DateTime.Now;
             if (storedFileName != null)
-                this.storedFileName = "./" + storedFileName + ".txt";
+            {
+                string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Game2048StiluxData/";
+
+                if (!Directory.Exists(folderPath))
+                {
+                    Directory.CreateDirectory(folderPath);
+                }
+
+                this.storedFileName = folderPath +  storedFileName + ".txt";
+            }
         }
         public Record(string accountName, int score, DateTime recordDay)
         {
@@ -52,12 +62,12 @@ namespace Game2048
         public string AccountName
         {
             get { return accountName; }
-            set { accountName = value; }
+            //set { accountName = value; }
         }
         public string StoredFileName
         {
             get { return storedFileName; }
-            set { storedFileName = "../../../Data/" + value + ".txt"; }
+            //set { storedFileName = value; }
         }
         public DateTime RecordDay
         {
@@ -86,7 +96,8 @@ namespace Game2048
                 Exception exception = new Exception("Need set up the file root to store");
                 throw exception;
             }
-            FileStream fileData = new FileStream(this.storedFileName, FileMode.OpenOrCreate, FileAccess.Read, FileShare.ReadWrite);
+            
+            FileStream fileData = new FileStream(this.storedFileName, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite);
             StreamReader reader = new StreamReader(fileData);
             while (reader.Peek() != -1)
             {

@@ -22,17 +22,17 @@ namespace Game2048
         public string AccountName
         {
             get { return this.accountName; }
-            set { this.accountName = value; }
+            //set { this.accountName = value; }
         }
         public string Password
         {
             get { return this.password; }
-            set { this.password = value; }
+            //set { this.password = value; }
         }
         public string StoredFileName
         {
             get { return this.storedFileName; }
-            set { this.storedFileName = value; }
+            //set { this.storedFileName = value; }
         }
         #endregion
 
@@ -49,7 +49,19 @@ namespace Game2048
             this.password = null;
             this.storedFileName = storedFileName;
             if (storedFileName != null)
-                this.storedFileName = "./" + storedFileName + ".txt";
+            {
+                if (storedFileName != null)
+                {
+                    string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Game2048StiluxData/";
+
+                    if (!Directory.Exists(folderPath))
+                    {
+                        Directory.CreateDirectory(folderPath);
+                    }
+
+                    this.storedFileName = folderPath + storedFileName + ".txt";
+                }
+            }
         }
         public User(string accountName, string password)
         {
@@ -348,7 +360,7 @@ namespace Game2048
         }
         public bool Store()
         {
-            FileStream storedFile = new FileStream(storedFileName, FileMode.Truncate, FileAccess.Write, FileShare.ReadWrite);
+            FileStream storedFile = new FileStream(storedFileName, FileMode.Truncate, FileAccess.ReadWrite, FileShare.ReadWrite);
             StreamWriter writer = new StreamWriter(storedFile);
             bool success = false;
             if (IsExistNameAccount() >= 0)

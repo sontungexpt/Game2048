@@ -5,7 +5,7 @@ VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Game2048", "Game2048\Game2048.csproj", "{CC6F5BED-727A-4402-BFFF-967DC7D04608}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{9008C642-06DC-406A-AD62-FB2C40B006B4}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "setup", "setup\setup.vdproj", "{0AD3D0EF-51DD-47B5-9332-ED1D2D63C602}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,8 +17,8 @@ Global
 		{CC6F5BED-727A-4402-BFFF-967DC7D04608}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC6F5BED-727A-4402-BFFF-967DC7D04608}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC6F5BED-727A-4402-BFFF-967DC7D04608}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9008C642-06DC-406A-AD62-FB2C40B006B4}.Debug|Any CPU.ActiveCfg = Debug
-		{9008C642-06DC-406A-AD62-FB2C40B006B4}.Release|Any CPU.ActiveCfg = Release
+		{0AD3D0EF-51DD-47B5-9332-ED1D2D63C602}.Debug|Any CPU.ActiveCfg = Debug
+		{0AD3D0EF-51DD-47B5-9332-ED1D2D63C602}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
