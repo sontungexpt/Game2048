@@ -4,7 +4,7 @@ This is a console-based implementation of the popular puzzle game 2048, written 
 
 ## Preview
 
-![Game2048 Preview](./docs/readme/preview.mp4)
+![Preview](./docs/readme/preview.mp4)
 
 ## Features
 
@@ -19,6 +19,12 @@ This is a console-based implementation of the popular puzzle game 2048, written 
 - The game allows the player to choose the size of the grid they want to play on
 
 ## Installation
+
+```bash
+git clone https://github.com/sontungexpt/game-2048.git
+```
+
+Open the project in Visual Studio and run the project.
 
 ## Contributions
 

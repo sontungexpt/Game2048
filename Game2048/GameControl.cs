@@ -23,9 +23,11 @@ namespace Game2048
             this.appear = appear;
         }
     }
+
     internal class GameControl
     {
         #region Feilds (Private)
+
         private int row;
         private int col;
         private int[,] stored;
@@ -38,9 +40,11 @@ namespace Game2048
         private Coord appearPosition;
         private ArrayList emptyPosition = new ArrayList();
         private const int SIZE_OF_BOX_SURROUND_NUMBER = 7;
-        #endregion
+
+        #endregion Feilds (Private)
 
         #region Constructor (Public)
+
         public GameControl()
         {
             this.row = 3;
@@ -52,6 +56,7 @@ namespace Game2048
             this.minRow = 2;
             this.score = 0;
         }
+
         public GameControl(int row, int col, int minRow, int minCol, int maxRow, int maxCol)
         {
             this.row = row;
@@ -63,6 +68,7 @@ namespace Game2048
             this.minRow = minRow;
             this.score = 0;
         }
+
         public GameControl(int minRow, int minCol, int maxRow, int maxCol)
         {
             this.maxRow = maxRow;
@@ -71,6 +77,7 @@ namespace Game2048
             this.minRow = minRow;
             stored = new int[this.row, this.col];
         }
+
         public GameControl(int row, int col)
         {
             this.score = 0;
@@ -78,51 +85,62 @@ namespace Game2048
             this.col = col;
             stored = new int[this.row, this.col];
         }
-        #endregion
+
+        #endregion Constructor (Public)
 
         #region Properties (Public)
+
         public int Row
         {
             get { return row; }
             set { row = value; }
         }
+
         public int Col
         {
             get { return col; }
             set { col = value; }
         }
+
         public int MaxRow
         {
             get { return maxRow; }
             set { maxRow = value; }
         }
+
         public int MaxCol
         {
             get { return maxCol; }
             set { maxCol = value; }
         }
+
         public int MinRow
         {
             get { return minRow; }
             set { minRow = value; }
         }
+
         public int MinCol
         {
             get { return minCol; }
             set { minCol = value; }
         }
+
         public Coord Origin
         {
             get { return origin; }
             set { origin = value; }
         }
+
         public int Score
         {
             get { return score; }
         }
-        #endregion
+
+        #endregion Properties (Public)
 
         #region Init method (Public)
+
         public void Init()
         {
             this.row = 3;
@@ -134,6 +152,7 @@ namespace Game2048
             this.minRow = 2;
             this.score = 0;
         }
+
         public void Init(int row, int col)
         {
             this.score = 0;
@@ -141,6 +160,7 @@ namespace Game2048
             this.col = col;
             stored = new int[this.row, this.col];
         }
+
         public void Init(int minRow, int minCol, int maxRow, int maxCol)
         {
             this.maxRow = maxRow;
@@ -148,6 +168,7 @@ namespace Game2048
             this.minCol = minCol;
             this.minRow = minRow;
         }
+
         public void Init(int row, int col, int minRow, int minCol, int maxRow, int maxCol)
         {
             this.score = 0;
@@ -159,14 +180,17 @@ namespace Game2048
             this.minCol = minCol;
             this.minRow = minRow;
         }
+
         public void InitMaxSize(int maxRow = 3, int maxCol = 3)
         {
             this.maxRow = maxRow;
             this.maxCol = maxCol;
         }
-        #endregion
+
+        #endregion Init method (Public)
 
         #region Controlling method (Public)
+
         public int WidthScreen()
         {
             if (SIZE_OF_BOX_SURROUND_NUMBER % 2 == 0)
@@ -174,10 +198,12 @@ namespace Game2048
             else
                 return (SIZE_OF_BOX_SURROUND_NUMBER + 1) * stored.GetLength(1) - (stored.GetLength(1) - 1);
         }
+
         public int HeightScreen()
         {
             return SIZE_OF_BOX_SURROUND_NUMBER / 2 * stored.GetLength(0) - (stored.GetLength(0) - 1);
         }
+
         public void Begin()
         {
             this.score = 0;
@@ -191,6 +217,7 @@ namespace Game2048
             firstPosition = RandomAppearPosition();
             stored[firstPosition.x, firstPosition.y] = 2;
         }
+
         public void Show()
         {
             Coord temp = new Coord(origin.x, origin.y);
@@ -204,8 +231,8 @@ namespace Game2048
                         frames.Draw(" ");
                     else
                     {
-                        if(appearPosition.x == i && appearPosition .y == j)
-                            frames.Draw(stored[i, j],ConsoleColor.Red);
+                        if (appearPosition.x == i && appearPosition.y == j)
+                            frames.Draw(stored[i, j], ConsoleColor.Red);
                         else
                             frames.Draw(stored[i, j]);
                     }
@@ -215,6 +242,7 @@ namespace Game2048
                 temp.y += frames.HeightConsole;
             }
         }
+
         public Rectangle ChooseSize(Rectangle frameContain, int width, int height)
         {
             Rectangle frame = new Rectangle();
@@ -230,19 +258,20 @@ namespace Game2048
             string title2 = chooseHeight + $"    numbers(MIN {minRow}, MAX {maxRow})";
             Cursor.WriteAt(title2, new Coord(frameContain.Center().x - title2.Length / 2 + 1, Cursor.Current().y + 3));
 
-            //set the cursor coordinate for input the width 
+            //set the cursor coordinate for input the width
             Coord positionOfChooseWidth = new Coord();
             positionOfChooseWidth.x = frameContain.Center().x - title1.Length / 2 + 2 + chooseWidth.Length;
             positionOfChooseWidth.y = frameContain.Center().y - frame.Height / 5 + frame.HeightConsole / 3 + 1;
             this.col = Cursor.InputAt(positionOfChooseWidth, NumbersDigitOf(maxCol), minCol, maxCol);
 
-            //set the cursor coordinate for input the height 
+            //set the cursor coordinate for input the height
             Coord positionOfChooseHeight = new Coord();
             positionOfChooseHeight.x = frameContain.Center().x - title2.Length / 2 + 2 + chooseHeight.Length;
             positionOfChooseHeight.y = Cursor.Current().y + 3;
             this.row = Cursor.InputAt(positionOfChooseHeight, NumbersDigitOf(maxRow), minRow, MaxRow);
             return frame;
         }
+
         public ConsoleKey Control(ref int score)
         {
             ConsoleKey button = ConsoleKey.C;
@@ -279,8 +308,8 @@ namespace Game2048
                 }
             }
             return button;
-
         }
+
         public void Start(Rectangle frameContain)
         {
             Begin();
@@ -311,7 +340,6 @@ namespace Game2048
                             GameUI.ClearTopRightNevigationButton(frameContain);
                             break;
                         }
-                            
                     }
                 }
                 else
@@ -322,12 +350,14 @@ namespace Game2048
             }
             Console.CursorVisible = true;
         }
+
         public bool Loses()
         {
             if (this.CheckEmptyPosition(stored) == false)
                 return true;
             return false;
         }
+
         public void Clear()
         {
             Coord temp = new Coord(origin.x, origin.y);
@@ -345,15 +375,18 @@ namespace Game2048
                 temp.y += frames.HeightConsole;
             }
         }
-        #endregion
- 
+
+        #endregion Controlling method (Public)
+
         #region Algorithm to control the game (Private)
+
         private void CreateLosing()
         {
             for (int i = 0; i < stored.GetLength(0); i++)
                 for (int j = 0; j < stored.GetLength(1); j++)
                     stored[i, j] = 2;
         }
+
         private static int NumbersDigitOf(int n)
         {
             int count = 0;
@@ -364,6 +397,7 @@ namespace Game2048
             }
             return count;
         }
+
         private int RandomNewNumber()
         {
             Random num = new Random();
@@ -373,6 +407,7 @@ namespace Game2048
             else
                 return 4;
         }
+
         private Coord RandomAppearPosition()
         {
             int appearPos = 0;
@@ -381,6 +416,7 @@ namespace Game2048
             appearPos = num.Next(0, emptyPosition.Count - 1);
             return (Coord)emptyPosition[appearPos];
         }
+
         private bool CheckEmptyPosition(int[,] stored)
         {
             bool empty = false;
@@ -395,6 +431,7 @@ namespace Game2048
                     }
             return empty;
         }
+
         private int MoveRight(int rowPosition)
         {
             int pointReceived = 0;
@@ -437,14 +474,15 @@ namespace Game2048
                 stored[rowPosition, i] = result.Dequeue();
             return pointReceived;
         }
+
         private int MoveRight()
         {
             int pointReceived = 0;
             for (int i = 0; i < stored.GetLength(0); i++)
                 pointReceived += MoveRight(i);
             return pointReceived;
-
         }
+
         private int MoveLeft(int rowPosition)
         {
             int pointReceived = 0;
@@ -487,6 +525,7 @@ namespace Game2048
                 stored[rowPosition, i] = result.Dequeue();
             return pointReceived;
         }
+
         private int MoveLeft()
         {
             int pointReceived = 0;
@@ -494,6 +533,7 @@ namespace Game2048
                 pointReceived += MoveLeft(i);
             return pointReceived;
         }
+
         private int MoveUp(int colPosition)
         {
             int pointReceived = 0;
@@ -536,6 +576,7 @@ namespace Game2048
                 stored[i, colPosition] = result.Dequeue();
             return pointReceived;
         }
+
         private int MoveUp()
         {
             int pointReceived = 0;
@@ -543,6 +584,7 @@ namespace Game2048
                 pointReceived += MoveUp(i);
             return pointReceived;
         }
+
         private int MoveDown(int colPosition)
         {
             int pointReceived = 0;
@@ -585,6 +627,7 @@ namespace Game2048
                 stored[i, colPosition] = result.Dequeue();
             return pointReceived;
         }
+
         private int MoveDown()
         {
             int pointReceived = 0;
@@ -592,7 +635,7 @@ namespace Game2048
                 pointReceived += MoveDown(i);
             return pointReceived;
         }
-        #endregion
 
+        #endregion Algorithm to control the game (Private)
     }
 }

@@ -4,45 +4,51 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+
 namespace Game2048
 {
     internal class User
     {
         #region Feilds (Public)
+
         private string accountName;
         private string password;
         private string storedFileName;
         private List<User> users;
 
-
-        #endregion
-
+        #endregion Feilds (Public)
 
         #region Properties (Public)
+
         public string AccountName
         {
             get { return this.accountName; }
             //set { this.accountName = value; }
         }
+
         public string Password
         {
             get { return this.password; }
             //set { this.password = value; }
         }
+
         public string StoredFileName
         {
             get { return this.storedFileName; }
             //set { this.storedFileName = value; }
         }
-        #endregion
+
+        #endregion Properties (Public)
 
         #region Constructor (Public)
+
         public User()
         {
             this.accountName = null;
             this.password = null;
             this.storedFileName = storedFileName = null;
         }
+
         public User(string storedFileName)
         {
             this.accountName = null;
@@ -63,21 +69,24 @@ namespace Game2048
                 }
             }
         }
+
         public User(string accountName, string password)
         {
             this.accountName = accountName;
             this.password = password;
         }
 
-        #endregion
+        #endregion Constructor (Public)
 
         #region Init_Method (Public)
+
         public void Init(string accountName, string password)
         {
             this.accountName = accountName;
             this.password = password;
         }
-        #endregion
+
+        #endregion Init_Method (Public)
 
         #region Method (Public)
 
@@ -130,6 +139,7 @@ namespace Game2048
                 }
             }
         }
+
         public void SignUp(int width, int height)
         {
         SignUp:
@@ -173,8 +183,8 @@ namespace Game2048
                     return;
                 }
             }
-
         }
+
         public void SignIn(int width, int height)
         {
         SignIn:
@@ -222,6 +232,7 @@ namespace Game2048
                 }
             }
         }
+
         public static string InputAccountAt(Coord positionInput, int maxStringLength, int minStringLength, out ConsoleKey button)
         {
             button = default;
@@ -255,12 +266,10 @@ namespace Game2048
                     if (result.Length > maxStringLength)
                         continue;
 
-
                     if (((c >= ConsoleKey.A && c <= ConsoleKey.Z) || (c >= ConsoleKey.D0 && c <= ConsoleKey.D9)) && result.Length <= maxStringLength && result.Length >= 0)
                     {
                         if (c >= ConsoleKey.D0 && c <= ConsoleKey.D9)
                         {
-
                             int unit = Converting.ToInt((char)c);
                             Cursor.WriteContinueAt(unit, new Coord(0, 0));
                             result += (char)c;
@@ -274,7 +283,6 @@ namespace Game2048
                 }
                 Console.CursorVisible = false;
                 return result;
-
             }
             catch (ArgumentOutOfRangeException e)
             {
@@ -283,6 +291,7 @@ namespace Game2048
             }
             return "";
         }
+
         public static string InputPasswordAt(Coord positionInput, int maxStringLength, int minStringLength, out ConsoleKey button)
         {
             button = default;
@@ -322,7 +331,6 @@ namespace Game2048
                 }
                 Console.CursorVisible = false;
                 return result;
-
             }
             catch (ArgumentOutOfRangeException e)
             {
@@ -331,6 +339,7 @@ namespace Game2048
             }
             return null;
         }
+
         public int IsExistNameAccount()
         {
             if (users.Count == 0)
@@ -340,6 +349,7 @@ namespace Game2048
                     return i;
             return -1;//can not file the accountName
         }
+
         public int IsExistNameAccount(string name)
         {
             if (users.Count == 0)
@@ -349,6 +359,7 @@ namespace Game2048
                     return i;
             return -2;//can not file the accountName
         }
+
         public int IsExistAccount()
         {
             if (users.Count == 0)
@@ -358,6 +369,7 @@ namespace Game2048
                     return i;
             return -2;//can not file the account
         }
+
         public bool Store()
         {
             FileStream storedFile = new FileStream(storedFileName, FileMode.Truncate, FileAccess.ReadWrite, FileShare.ReadWrite);
@@ -388,12 +400,14 @@ namespace Game2048
             storedFile.Close();
             return success;
         }
+
         public void FixThePassword(string newPassword)
         {
             int position = IsExistNameAccount();
             if (position >= 0)
                 this.users[position].password = newPassword;
         }
+
         public void Read()
         {
             users = new List<User>();
@@ -414,6 +428,7 @@ namespace Game2048
             reader.Close();
             fileData.Close();
         }
-        #endregion
+
+        #endregion Method (Public)
     }
 }
