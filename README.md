@@ -4,7 +4,8 @@ This is a console-based implementation of the popular puzzle game 2048, written 
 
 ## Preview
 
-![Preview](./docs/readme/preview.png)(./docs/readme/preview.mp4)
+https://github.com/sontungexpt/game-2048/assets/92097639/fc3e216a-5367-48bd-9725-c0efe5298c10
+
 
 ## Features
 
