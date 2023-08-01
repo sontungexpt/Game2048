@@ -4,7 +4,7 @@ This is a console-based implementation of the popular puzzle game 2048, written 
 
 ## Preview
 
-![Preview](./docs/readme/preview.mp4)
+![Preview](./docs/readme/preview.png)(./docs/readme/preview.mp4)
 
 ## Features
 
